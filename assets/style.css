@@ -1,0 +1,20 @@
+.header {
+    width: 100%;
+    margin: auto;
+    border: 1px solid black;
+}
+
+.add {
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 2px;
+    background-color: beige;
+}
+
+.add:hover{
+    background-color: lightgrey;
+}
+
+.add:active{
+    background-color: grey;
+}
