@@ -1,7 +1,7 @@
 .header {
-    width: 100%;
-    margin: auto;
     border: 1px solid black;
+    text-align: center;
+    padding-bottom: 4px;
 }
 
 .add {
@@ -17,4 +17,27 @@
 
 .add:active{
     background-color: grey;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+ul:hover{
+    background-color: lightgray;
+}
+
+ul li{
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+    list-style: none;
+}
+li.checked {
+    background-color: grey;
+    text-decoration: line-through;
 }

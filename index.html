@@ -10,12 +10,38 @@
 <body>
     <div class="header">
         <h2>To do list</h2>
-        <input type="text" placeholder="Ecrire ici...">
-        <span onclick="" class="add">Ajouter</span>
+        <input type="text" id="newValue" placeholder="Ecrire ici...">
+        <span onclick="addElement()" class="add">Ajouter</span>
     </div>
 
-    <ul class="list">
+    <ul id="myList">
         <li>Première chose</li>
     </ul>
+
+    <script>
+        // Add a new <li> element
+        function addElement(){ 
+            let li = document.createElement("LI"); 
+            let input=document.getElementById("newValue").value; //Get the input value
+            if (input!==''){
+                let value=document.createTextNode(input);  // Create the text node
+                li.appendChild(value);                      // Append the text to our new <li> element
+                document.getElementById("myList").appendChild(li); // append the <li> to the our <ul> which has the "myList" ID
+            }
+            else alert("L'élement est vide");
+
+            document.getElementById("newValue").value=""; //Empty the input field
+        }
+
+        // Check- Uncheck an element
+        let list = document.querySelector('ul');  // get the <ul>
+        list.addEventListener('click',function(event){ // Listen to a mouse click event in the ul
+            if (event.target.tagName=== 'LI'){         // Check if the clicked area is a <li> 
+                event.target.classList.toggle('checked'); // Toggle the class checked
+            }
+        })
+
+    </script>  
+
 </body>
 </html>
