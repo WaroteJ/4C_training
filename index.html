@@ -29,18 +29,35 @@
                 document.getElementById("myList").appendChild(li); // append the <li> to the our <ul> which has the "myList" ID
             }
             else alert("L'élement est vide");
-
             document.getElementById("newValue").value=""; //Empty the input field
+
+            let span = document.createElement("SPAN"); //We create a <span> next to the <li>
+            let x = document.createTextNode("\u00D7"); // This a the kind of X character
+            span.className="close";                    // add the class "close" to the <span>
+            span.appendChild(x);                        
+            li.appendChild(span);  
         }
 
         // Check- Uncheck an element
-        let list = document.querySelector('ul');  // get the <ul>
-        list.addEventListener('click',function(event){ // Listen to a mouse click event in the ul
-            if (event.target.tagName=== 'LI'){         // Check if the clicked area is a <li> 
-                event.target.classList.toggle('checked'); // Toggle the class checked
+        let list = document.querySelector("ul");  // get the <ul>
+        list.addEventListener("click",function(event){ // Listen to a mouse click event in the ul
+            if (event.target.tagName=== "LI"){         // Check if the clicked area is a <li> 
+                event.target.classList.toggle("checked"); // Toggle the class checked
+            }
+            if (event.target.tagName==="SPAN"){         // Check if the clicked area is a <span>
+                event.target.parentNode.remove();       // Remove the associated <li>
             }
         })
 
+        //Add the close button to every <li> element
+        let liElements = document.getElementsByTagName("LI"); // Get all <li> element
+        for (let index = 0; index < liElements.length; index++) {
+            let span = document.createElement("SPAN"); //We create a <span> next to the <li>
+            let x = document.createTextNode("\u00D7"); // This a the kind of X character
+            span.className="close";                    // add the class "close" to the <span>
+            span.appendChild(x);                        
+            liElements[index].appendChild(span);        
+        };
     </script>  
 
 </body>
