@@ -32,32 +32,76 @@
             document.getElementById("newValue").value=""; //Empty the input field
 
             let span = document.createElement("SPAN"); //We create a <span> next to the <li>
-            let x = document.createTextNode("\u00D7"); // This a the kind of X character
+            let x = document.createTextNode("\u2191"); // This a the kind of X character
+            span.className="arrowUp arrows";                    // add the class "close" to the <span>
+            span.appendChild(x);                        
+            li.appendChild(span);    
+            
+            span = document.createElement("SPAN"); //We create a <span> next to the <li>
+            x = document.createTextNode("\u2193"); // This a the kind of X character
+            span.className="arrowDown arrows";                    // add the class "close" to the <span>
+            span.appendChild(x);                        
+            li.appendChild(span);   
+
+            span = document.createElement("SPAN"); //We create a <span> next to the <li>
+            x = document.createTextNode("\u00D7"); // This a the kind of X character
             span.className="close";                    // add the class "close" to the <span>
             span.appendChild(x);                        
             li.appendChild(span);  
         }
 
-        // Check- Uncheck an element
+        // All the onclick events on the list elements
         let list = document.querySelector("ul");  // get the <ul>
-        list.addEventListener("click",function(event){ // Listen to a mouse click event in the ul
+        list.addEventListener("click",function(event){ // Listen to an onclick event in the ul     
             if (event.target.tagName=== "LI"){         // Check if the clicked area is a <li> 
                 event.target.classList.toggle("checked"); // Toggle the class checked
             }
-            if (event.target.tagName==="SPAN"){         // Check if the clicked area is a <span>
-                event.target.parentNode.remove();       // Remove the associated <li>
+            switch (event.target.className) {
+                case "close": // Check if the clicked area class is "close"
+                    event.target.parentNode.remove(); // Remove the associated <li>
+                    break;
+                case "arrowUp arrows":
+                    if(!!event.target.parentNode.previousSibling){
+                        let tempClass=event.target.parentNode.previousSibling.className;
+                        let temp=event.target.parentNode.previousSibling.innerHTML;
+                        event.target.parentNode.previousSibling.className=event.target.parentNode.className;
+                        event.target.parentNode.previousSibling.innerHTML=event.target.parentNode.innerHTML;
+                        event.target.parentNode.className=tempClass; 
+                        event.target.parentNode.innerHTML=temp;
+                    }
+                    break;
+                case "arrowDown arrows":
+                       
+                    break;                        
+                default:
+                    break;
             }
         })
 
         //Add the close button to every <li> element
         let liElements = document.getElementsByTagName("LI"); // Get all <li> element
-        for (let index = 0; index < liElements.length; index++) {
+
+        for (let i = 0; i < liElements.length; i++) {
+            let span = document.createElement("SPAN"); //We create a <span> next to the <li>
+            let x = document.createTextNode("\u2191"); // This a the kind of X character
+            span.className="arrowUp arrows";                    // add the class "close" to the <span>
+            span.appendChild(x);                        
+            liElements[i].appendChild(span);    
+            
+            span = document.createElement("SPAN"); //We create a <span> next to the <li>
+            x = document.createTextNode("\u2193"); // This a the kind of X character
+            span.className="arrowDown arrows";                    // add the class "close" to the <span>
+            span.appendChild(x);                        
+            liElements[i].appendChild(span);        
+        };
+
+        for (let i = 0; i < liElements.length; i++) {
             let span = document.createElement("SPAN"); //We create a <span> next to the <li>
             let x = document.createTextNode("\u00D7"); // This a the kind of X character
             span.className="close";                    // add the class "close" to the <span>
             span.appendChild(x);                        
-            liElements[index].appendChild(span);        
-        };
+            liElements[i].appendChild(span);        
+        }; 
     </script>  
 
 </body>
