@@ -43,11 +43,11 @@ list.addEventListener("click",function(event){ // Listen to an onclick event in 
                 let parent = node.parentNode;
                 // The equivalent of parent.children.indexOf(child)
                 let i = Array.prototype.indexOf.call(parent.children, node);
-                document.getElementById("myList").insertBefore(node,document.getElementById("myList").childNodes[i]);
+                if (i>0) document.getElementById("myList").insertBefore(node,document.getElementById("myList").childNodes[i]);
             break;
         case "arrowDown arrows":
-                /*let node2 = event.target.parentNode;
-                let parent2 = node2.parentNode;
+                let node2 = event.target.parentNode; // move to the last position, yet to be done correctly
+               /* let parent2 = node2.parentNode;
                 // The equivalent of parent.children.indexOf(child)
                 let i2 = (Array.prototype.indexOf.call(parent2.children, node2))+2;*/
                 document.getElementById("myList").insertBefore(node2,document.getElementById("myList").lastElementChild.nextElementSibling);
