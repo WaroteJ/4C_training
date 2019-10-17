@@ -1,32 +1,19 @@
   // Add a new <li> element
-  function addElement(){ 
-    let li = document.createElement("LI"); 
-    let input=document.getElementById("newValue").value; //Get the input value
-    if (input!==''){
-        let value=document.createTextNode(input);  // Create the text node
-        li.appendChild(value);                      // Append the text to our new <li> element
-        document.getElementById("myList").appendChild(li); // append the <li> to the our <ul> which has the "myList" ID
-    }
-    else alert("L'élement est vide");
-    document.getElementById("newValue").value=""; //Empty the input field
+$(function(){
+    $(".add").click(function(){
+        let value = $("#newValue").val();
+        if (value!==''){
+            spanAU="<span class=\"arrowUp arrows\">\u2191</span>";  //span ArrowUp
+            spanAD="<span class=\"arrowDown arrows\">\u2193</span>";//span ArrowDown
+            spanC="<span class=\"close\">\u00D7</span>"             //span Close
+            $("ul#myList").append("<li>"+value+spanAU+spanAD+spanC+"</li>");//Append our new element to the list
+        }
+        else alert("Champ vide");
 
-    let span = document.createElement("SPAN"); //We create a <span> next to the <li>
-    let x = document.createTextNode("\u2191"); 
-    span.className="arrowUp arrows";           // add the classes "arrowUp arrows" to the <span>   
-    span.appendChild(x);                        
-    li.appendChild(span);    
-    span = document.createElement("SPAN"); //We create a <span> next to the <li>
-    x = document.createTextNode("\u2193"); 
-    span.className="arrowDown arrows";     // add the classes "arrowDown arrows" to the <span>
-    span.appendChild(x);                        
-    li.appendChild(span);   
+        $("#newValue").val(''); //Empty the input field
+    })  
 
-    span = document.createElement("SPAN"); //We create a <span> next to the <li>
-    x = document.createTextNode("\u00D7"); // This a the kind of X character
-    span.className="close";                // add the class "close" to the <span>
-    span.appendChild(x);                        
-    li.appendChild(span);  
-}
+});
 
 // All the onclick events on the list elements
 let list = document.querySelector("ul");  // get the <ul>
@@ -43,11 +30,11 @@ list.addEventListener("click",function(event){ // Listen to an onclick event in 
                 let parent = node.parentNode;
                 // The equivalent of parent.children.indexOf(child)
                 let i = Array.prototype.indexOf.call(parent.children, node);
-                if (i>0) document.getElementById("myList").insertBefore(node,document.getElementById("myList").childNodes[i]);
+                document.getElementById("myList").insertBefore(node,document.getElementById("myList").childNodes[i]);
             break;
         case "arrowDown arrows":
-                let node2 = event.target.parentNode; // move to the last position, yet to be done correctly
-               /* let parent2 = node2.parentNode;
+                /*let node2 = event.target.parentNode;
+                let parent2 = node2.parentNode;
                 // The equivalent of parent.children.indexOf(child)
                 let i2 = (Array.prototype.indexOf.call(parent2.children, node2))+2;*/
                 document.getElementById("myList").insertBefore(node2,document.getElementById("myList").lastElementChild.nextElementSibling);
