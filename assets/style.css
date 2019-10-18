@@ -41,6 +41,9 @@ ul li{
     transition: 0.2s;
     list-style: none;
     border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 li.checked {
     background-color: grey;
