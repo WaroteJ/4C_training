@@ -11,38 +11,40 @@ $(function(){
         else alert("Champ vide");
 
         $("#newValue").val(''); //Empty the input field
-    })  
+    })
+    $("#newValue").keypress(function(e){
+        if(e.which==13){    // enter ASCII code 
+            $(".add").click();
+        }
+    });
 
+    $("#myList").click(function(e){ //Click on an <li> element or button included in one
+        $item=e.target;
+        if ($item.tagName==="LI"){  // toggle the "checked" class
+            $item.classList.toggle("checked");
+        }
+        switch ($item.className) {
+            case "close":                           // click = close button => remove the <li>
+                    $item.parentNode.remove();
+                break;
+            case "arrowUp arrows":                  // click = up arrow => move up the <li>
+                    $item.parentNode.classList.toggle("toMove");
+                    $(".toMove").prev("li").toggleClass("moveUp");    
+                    $(".toMove").insertBefore($(".moveUp"));
+                    $("li").removeClass("toMove moveUp");
+                break;
+            case "arrowDown arrows":                // click = down arrow => move down the <li>
+                    $item.parentNode.classList.toggle("toMove");
+                    $(".toMove").next("li").toggleClass("moveDown");               
+                    $(".toMove").insertAfter($(".moveDown"));
+                    $("li").removeClass("toMove moveDown");
+                break;
+            default:
+                break;
+        }
+    })
 });
 
-// All the onclick events on the list elements
-let list = document.querySelector("ul");  // get the <ul>
-list.addEventListener("click",function(event){ // Listen to an onclick event in the ul     
-    if (event.target.tagName=== "LI"){         // Check if the clicked area is a <li> 
-        event.target.classList.toggle("checked"); // Toggle the class checked
-    }
-    switch (event.target.className) {
-        case "close": // Check if the clicked area class is "close"
-            event.target.parentNode.remove(); // Remove the associated <li>
-            break;
-        case "arrowUp arrows":
-                let node = event.target.parentNode;
-                let parent = node.parentNode;
-                // The equivalent of parent.children.indexOf(child)
-                let i = Array.prototype.indexOf.call(parent.children, node);
-                document.getElementById("myList").insertBefore(node,document.getElementById("myList").childNodes[i]);
-            break;
-        case "arrowDown arrows":
-                /*let node2 = event.target.parentNode;
-                let parent2 = node2.parentNode;
-                // The equivalent of parent.children.indexOf(child)
-                let i2 = (Array.prototype.indexOf.call(parent2.children, node2))+2;*/
-                document.getElementById("myList").insertBefore(node2,document.getElementById("myList").lastElementChild.nextElementSibling);
-            break;                        
-        default:
-            break;
-    }
-})
 
 //Add the close button to every <li> element
 let liElements = document.getElementsByTagName("LI"); // Get all <li> element
