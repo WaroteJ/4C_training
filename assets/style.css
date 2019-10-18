@@ -1,4 +1,4 @@
-html, body {
+html, body, p {
     display: block;
     margin: 0;
     padding: 0;
@@ -32,7 +32,7 @@ ul:hover{
     background-color: lightgray;
 }
 
-ul li{
+ul>li{
     cursor: pointer;
     position: relative;
     padding: 15px 8px 15px 40px;
@@ -41,38 +41,46 @@ ul li{
     transition: 0.2s;
     list-style: none;
     border-bottom: 1px solid black;
+    display: flex;
+    align-items: stretch;
 }
 li.checked {
     background-color: grey;
+}
+li.checked>p{
     text-decoration: line-through;
+}
+p{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
 .arrows{
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
-.arrows:hover{
+.arrowUp{
+    padding: 6px 12px;
+}
+.arrowDown{
+    padding: 6px 12px;
+}
+.arrowUp:hover{
     background-color: darkgray;
     color: white;
     transition: 0.3s;
 }
-.arrowUp{
-    position: absolute;
-    right: 40px;
-    top: 0;
-    padding: 2px 16px 3px 16px;   
-}
-.arrowDown{
-    position: absolute;
-    right: 40px;
-    top: 25px;
-    padding: 3px 16px 2px 16px;   
+.arrowDown:hover{
+    background-color: darkgray;
+    color: white;
+    transition: 0.3s;
 }
 .close {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 15px 16px 15px 16px;
+    text-align: center;
+    padding: 24px 20px;
+    height: 100%;
   }
 .close:hover{
     background-color: crimson;
