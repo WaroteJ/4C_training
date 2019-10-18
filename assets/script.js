@@ -28,8 +28,8 @@ $(function(){
                     $item.parentNode.remove();
                 break;
             case "arrowUp arrows":                  // click = up arrow => move up the <li>
-                    $item.parentNode.classList.toggle("toMove");
-                    $(".toMove").prev("li").toggleClass("moveUp");    
+                    $item.parentNode.classList.toggle("toMove");    //We use classes to recognise our elements to move
+                    $(".toMove").prev("li").toggleClass("moveUp");  // inside the list
                     $(".toMove").insertBefore($(".moveUp"));
                     $("li").removeClass("toMove moveUp");
                 break;
@@ -43,30 +43,9 @@ $(function(){
                 break;
         }
     })
+
+    spanAU="<span class=\"arrowUp arrows\">\u2191</span>";  
+    spanAD="<span class=\"arrowDown arrows\">\u2193</span>";
+    spanC="<span class=\"close\">\u00D7</span>"             
+    $("li").append(spanAU+spanAD+spanC);//Append our buttons to every existing <li>
 });
-
-
-//Add the close button to every <li> element
-let liElements = document.getElementsByTagName("LI"); // Get all <li> element
-
-for (let i = 0; i < liElements.length; i++) {
-    let span = document.createElement("SPAN"); //We create a <span> next to the <li>
-    let x = document.createTextNode("\u2191"); // This a the kind of X character
-    span.className="arrowUp arrows";                    // add the class "close" to the <span>
-    span.appendChild(x);                        
-    liElements[i].appendChild(span);    
-    
-    span = document.createElement("SPAN"); //We create a <span> next to the <li>
-    x = document.createTextNode("\u2193"); // This a the kind of X character
-    span.className="arrowDown arrows";                    // add the class "close" to the <span>
-    span.appendChild(x);                        
-    liElements[i].appendChild(span);        
-};
-
-for (let i = 0; i < liElements.length; i++) {
-    let span = document.createElement("SPAN"); //We create a <span> next to the <li>
-    let x = document.createTextNode("\u00D7"); // This a the kind of X character
-    span.className="close";                    // add the class "close" to the <span>
-    span.appendChild(x);                        
-    liElements[i].appendChild(span);        
-}; 
