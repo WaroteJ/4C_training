@@ -81,7 +81,7 @@ p{
     text-align: center;
     padding: 24px 20px;
     height: 100%;
-  }
+}
 .close:hover{
     background-color: crimson;
     transition: 0.3s;
