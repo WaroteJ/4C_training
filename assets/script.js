@@ -1,4 +1,9 @@
 $(function(){
+    if (navigator.userAgent.match(/Trident.*rv\:11\./)) {
+        $(".IE").toggle();
+      }
+
+      
     $(".add").click(function(){ // Addition of a new element
         let value = $("#newValue").val();
         if (value!==''){    
