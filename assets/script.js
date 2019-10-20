@@ -1,40 +1,53 @@
-  // Add a new <li> element
 $(function(){
-    $(".add").click(function(){
+
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+    {
+        $(".IE").show();
+        $("main").hide();
+        alert("Attention, vous utilisez Internet Explorer. Ce navigateur n'étant plus mis à jour, vous vous exposez à des failles de sécurité");
+    }
+      
+    $(".add").click(function(){ // Addition of a new element
         let value = $("#newValue").val();
-        if (value!==''){
-            spanAU="<span class=\"arrowUp arrows\">\u2191</span>";  //span ArrowUp
-            spanAD="<span class=\"arrowDown arrows\">\u2193</span>";//span ArrowDown
-            spanC="<span class=\"close\">\u00D7</span>"             //span Close
-            $("ul#myList").append("<li>"+value+spanAU+spanAD+spanC+"</li>");//Append our new element to the list
+        if (value!==''){    
+            spanAU="<div class =\"arrows\"><span class=\"arrowUp\">\u2191</span>";  //span ArrowUp + div opening
+            spanAD="<span class=\"arrowDown\">\u2193</span></div>";                 //span ArrowDown + div closing
+            spanC="<span class=\"close\">\u00D7</span>"                             //span Close
+            $("ul#myList").append("<li><p>"+value+"</p>"+spanAU+spanAD+spanC+"</li>");//Append our new element to the list
         }
         else alert("Champ vide");
 
         $("#newValue").val(''); //Empty the input field
     })
     $("#newValue").keypress(function(e){
-        if(e.which==13){    // enter ASCII code 
+        if(e.which==13)    // enter key ASCII code 
             $(".add").click();
-        }
     });
 
-    $("#myList").click(function(e){ //Click on an <li> element or button included in one
-        $item=e.target;
-        if ($item.tagName==="LI"){  // toggle the "checked" class
-            $item.classList.toggle("checked");
+
+    $("#myList").click(function(e){ //Move or delete a <li> depending on the clicked area
+        let item=e.target;
+        if (item.tagName==="LI"){  // toggle the "checked" class on <li>
+            item.classList.toggle("checked");
         }
-        switch ($item.className) {
+        else if (item.parentNode.tagName==="LI" && item.tagName==="P"){ // handle a click on a <p> child
+            item.parentNode.classList.toggle("checked");
+        }
+        switch (item.className) {
             case "close":                           // click = close button => remove the <li>
-                    $item.parentNode.remove();
+                    item.parentNode.remove();
                 break;
-            case "arrowUp arrows":                  // click = up arrow => move up the <li>
-                    $item.parentNode.classList.toggle("toMove");    //We use classes to recognise our elements to move
-                    $(".toMove").prev("li").toggleClass("moveUp");  // inside the list
+            case "arrowUp":                  // click = up arrow => move up the <li>
+                    item.parentNode.parentNode.classList.toggle("toMove");    //We use classes to recognise our elements to move
+                    $(".toMove").prev("li").toggleClass("moveUp");             //inside the list
                     $(".toMove").insertBefore($(".moveUp"));
                     $("li").removeClass("toMove moveUp");
                 break;
-            case "arrowDown arrows":                // click = down arrow => move down the <li>
-                    $item.parentNode.classList.toggle("toMove");
+            case "arrowDown":                // click = down arrow => move down the <li>
+                    item.parentNode.parentNode.classList.toggle("toMove");
                     $(".toMove").next("li").toggleClass("moveDown");               
                     $(".toMove").insertAfter($(".moveDown"));
                     $("li").removeClass("toMove moveDown");
@@ -44,8 +57,9 @@ $(function(){
         }
     })
 
-    spanAU="<span class=\"arrowUp arrows\">\u2191</span>";  
-    spanAD="<span class=\"arrowDown arrows\">\u2193</span>";
+
+    spanAU="<div class =\"arrows\"><span class=\"arrowUp\">\u2191</span>";  
+    spanAD="<span class=\"arrowDown\">\u2193</span></div>";
     spanC="<span class=\"close\">\u00D7</span>"             
-    $("li").append(spanAU+spanAD+spanC);//Append our buttons to every existing <li>
+    $("li").append(spanAU+spanAD+spanC);    //Append our buttons to every existing <li>
 });
