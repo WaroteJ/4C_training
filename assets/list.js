@@ -6,12 +6,13 @@ $(function(){
     if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
     {
         $(".IE").show();
+        $("header").hide();
         $("main").hide();
-        alert("Attention, vous utilisez Internet Explorer. Ce navigateur n'étant plus mis à jour, vous vous exposez à des failles de sécurité");
+        alert("Attention, vous utilisez Internet Explorer. Vous vous exposez à des failles de sécurité en utilisant ce navigateur");
     }
       
-    $(".add").click(function(){ // Addition of a new element
-        let value = $("#newValue").val();
+    $(".add-element").click(function(){ // Addition of a new element
+        let value = $("#new-element").val();
         if (value!==''){    
             spanAU="<div class =\"arrows\"><span class=\"arrowUp\">\u2191</span>";  //span ArrowUp + div opening
             spanAD="<span class=\"arrowDown\">\u2193</span></div>";                 //span ArrowDown + div closing
@@ -20,11 +21,11 @@ $(function(){
         }
         else alert("Champ vide");
 
-        $("#newValue").val(''); //Empty the input field
+        $("#new-element").val(''); //Empty the input field
     })
-    $("#newValue").keypress(function(e){
+    $("#new-element").keypress(function(e){
         if(e.which==13)    // enter key ASCII code 
-            $(".add").click();
+            $(".add-element").click();
     });
 
 
@@ -56,10 +57,4 @@ $(function(){
                 break;
         }
     })
-
-
-    spanAU="<div class =\"arrows\"><span class=\"arrowUp\">\u2191</span>";  
-    spanAD="<span class=\"arrowDown\">\u2193</span></div>";
-    spanC="<span class=\"close\">\u00D7</span>"             
-    $("li").append(spanAU+spanAD+spanC);    //Append our buttons to every existing <li>
 });

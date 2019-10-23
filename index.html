@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/list.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>To do list</title>
 </head>
 <body>
 
    <div class="IE">
-        <p>Internet Explorer is not supported, I invite you to use another web 
+        <p>Internet Explorer has many security flaws, I invite you to use another web 
             browser such as <a href="https://www.google.com/chrome/">Google chrome</a> 
                 or <a href="https://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a> !
         </p>
     </div>
 
-    <main>
-        <div class="header">
-            <h2>To do list</h2>
-            <input type="text" id="newValue" placeholder="Ecrire ici...">
-            <span class="add">Ajouter</span>
-        </div>
+    <header>
+            <h1>To do list</h1>
+            <input type="text" id="new-element" placeholder="Ecrire ici...">
+            <span class="add-element">Ajouter</span>
+    </header>
 
+    <main>
         <ul id="myList">
             <li>
                 <p>
@@ -31,10 +31,12 @@
                 nobis fuga odit voluptatum omnis cumque incidunt aliquid? 
                 Itaque quia deserunt corrupti alias ducimus accusantium accusamus commodi corporis!
                 </p>
+                <div class ="arrows"><span class="arrowUp">↑</span><span class="arrowDown">↓</span></div>
+                <span class="close">×</span>        
             </li>
         </ul>
     </main>
 
-    <script type="text/javascript" src="assets/script.js"> </script>  
+    <script type="text/javascript" src="assets/list.js"> </script>  
 </body>
 </html>
