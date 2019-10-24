@@ -13,7 +13,7 @@ $(function(){
       
     $(".add-element").click(function(){ // Addition of a new element
         let value = $("#new-element").val();
-        if (value!==''){    
+        if (value !== ''){  
             spanAU="<div class =\"arrows\"><span class=\"arrowUp\">\u2191</span>";  //span ArrowUp + div opening
             spanAD="<span class=\"arrowDown\">\u2193</span></div>";                 //span ArrowDown + div closing
             spanC="<span class=\"close\">\u00D7</span>"                             //span Close
@@ -24,17 +24,17 @@ $(function(){
         $("#new-element").val(''); //Empty the input field
     })
     $("#new-element").keypress(function(e){
-        if(e.which==13)    // enter key ASCII code 
+        if(e.which == 13)    // enter key ASCII code 
             $(".add-element").click();
     });
 
 
     $("#myList").click(function(e){ //Move or delete a <li> depending on the clicked area
         let item=e.target;
-        if (item.tagName==="LI"){  // toggle the "checked" class on <li>
+        if (item.tagName === "LI"){  // toggle the "checked" class on <li>
             item.classList.toggle("checked");
         }
-        else if (item.parentNode.tagName==="LI" && item.tagName==="P"){ // handle a click on a <p> child
+        else if (item.parentNode.tagName === "LI" && item.tagName === "P"){ // handle a click on a <p> child
             item.parentNode.classList.toggle("checked");
         }
         switch (item.className) {
